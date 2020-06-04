@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <style>
+            body{
+                background-image: linear-gradient(to right,#56ccf2,#2f80ed);
+            }
+            #calc{
+                padding: 10px;
+                position: absolute;
+                left: 40%;
+                top: 20%;
+                background-color: black;
+                border-radius: 8px;
+                visibility: hidden;
+            }
+            #display #display-value{
+                width: 258px;
+                height: 40px;
+                background-color: snow;
+                font-size: 34px;
+                font-display: right;
+                margin-bottom: 8px;
+                letter-spacing: 2px;
+                font-weight: bold;
+            }
+            #buttonid table tr td input[type="button"]{
+                margin: 1px;
+                width: 60px;
+                height: 60px;
+                border: none;
+                font-size: 22px;
+                background-color: silver;
+                border-radius: 1px;
+            }
+            .header{
+                text-align: center;
+                font-size: 40px;
+                font-family: Verdana;
+                margin-top: 45px;
+            }
+            #buttonid table tr td input[type="button"]:hover{
+                margin: 1px;
+                width: 60px;
+                height: 60px;
+                border: none;
+                font-size: 22px;
+                background-color: lightgray;
+                border-radius: 1px;                
+            }
+            #btnid{
+                position: absolute;
+                left: 43%;
+                top: 40%;
+            }
+            #btnid #btn{
+                width: 190px;
+                height: 45px;
+                border-radius: 5px;
+                border: 2px solid black;
+                background-color: seashell;
+                font-size: 25px;
+                font-weight: bold;
+                font-family: sans-serif;
+            }
+            #btnid #btn:hover{
+                width: 190px;
+                height: 45px;
+                border-radius: 5px;
+                border: 2px solid blueviolet;
+                background-color: red;
+                color: silver;
+                font-size: 25px;
+                font-weight: bold;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="header">Calculator Using HTML, CSS and Javascript</h1>
+        <div id="btnid">
+            <button onclick="view()" id="btn">Calculator</button>
+        </div>
+        <div id="calc">
+        <div id="display">
+            <input type="text" id="display-value" autofocus="autofocus">
+        </div>
+        <div id="buttonid">
+            <table>
+                <tr>
+                    <td><input type="button" id="resetid" onclick="reset()" value="C"></td>
+                    <td><input type="button" onclick="reset()" value="CE"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="%"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="/"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="7"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="8"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="9"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="*"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="4"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="5"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="6"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="-"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="1"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="2"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="3"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="+"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="0"></td>
+                    <td><input type="button" onclick="document.getElementById('display-value').value += value;" value="."></td>
+                    <td colspan="2"><input type="button" value="=" style="width: 123px; background-color: green;" onclick="calculate()"></td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            function reset()
+            {
+                document.getElementById('display-value').value=0;
+            }
+            function calculate()
+            {
+                var v1 = document.getElementById('display-value').value;
+                document.getElementById('display-value').value = eval(v1);
+            }
+           
+            $('#display-value').keypress(function(event){
+            	var keycode = (event.keyCode ? event.keyCode : event.which);
+	            if(keycode == '13'){
+		            calculate();
+	            }
+           });
 
+           function view()
+           {
+               document.getElementById('calc').style.visibility = "visible";
+               document.getElementById('btn').style.visibility = "hidden";
+           }
+        </script>
+    </body>
+</html>
